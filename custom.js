@@ -1,26 +1,21 @@
 (function() {
-    var inputValue = document.getElementById("user_input");
-
-    function userInputValue() {
-        var str = inputValue.value;
-        var newlist = document.createElement('li');
-        //alert(str);
-        alphabetPosition(str, newlist);
+    let inputValue = document.getElementById("user_input");
+    inputValue.onkeyup = function() {
+        let str = inputValue.value;
+        alphabetPosition(str);
     }
-    inputValue.onkeyup = userInputValue;
 
-    function alphabetPosition(text, newlist) {
-        var result = "";
-        for (var i = 0; i < text.length; i++) {
-            var code = text.toUpperCase().charCodeAt(i);
-            if (code > 64 && code < 91) {
+    function alphabetPosition(text) {
+        let result = html = "";
+        for(let i = 0; i < text.length; i++) {
+            let code = text.toUpperCase().charCodeAt(i);
+            if(code > 64 && code < 91) {
                 result = (code - 64) + " "
-                document.getElementById('newadded').appendChild(newlist).innerHTML = "The index of "+"'" + text[i] +"'"+ " " + result;
+                html += "<li>" + "The index of " + "'" + text[i] + "'" + " " + result + "</li>";
             } else {
-                document.getElementById('newadded').appendChild(newlist).innerHTML = "'" + text[i] +"'"+ " is not an alphabet";
-
+                html += "<li>" + "'" + text[i] + "'" + " is not an alphabet" + "</li>";
             }
         }
-
+        document.getElementById('newadded').innerHTML = html;
     }
 })();
